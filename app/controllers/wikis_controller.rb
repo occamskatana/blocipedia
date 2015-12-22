@@ -13,6 +13,7 @@ class WikisController < ApplicationController
 
   def create
   	@wiki = Wiki.new(wiki_params)
+    authorize @wiki
 
   	if @wiki.save
   		flash[:notice] = "Your wiki was saved"
@@ -25,7 +26,7 @@ class WikisController < ApplicationController
 
   def destroy 
   	@wiki = Wiki.find(params[:id])
-
+    authorize @wiki
   	if @wiki.destroy
   		flash[:notice] = "Your wiki was successfully destroyed"
   	else
@@ -54,5 +55,10 @@ class WikisController < ApplicationController
 
   def wiki_params
   	params.require(:wiki).permit(:title, :body, :private)
+  end
+
+  def user_not_authorized
+    flash[:alert] = "You are not authorized to perform this action."
+    redirect_to(request.referrer || root_path)
   end
 end

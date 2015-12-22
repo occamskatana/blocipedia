@@ -1,10 +1,17 @@
-class WikiPolicy < ApplicationPolicy
+class WikiPolicy 
+  attr_reader :user, :wiki
 
-	def create
-		user.admin?
-	end
+  def initialize(user, wiki)
+  	raise Pundit::NotAuthorizedError, "You must be an admin to do that" unless user.admin?
+  	@user = user
+  	@wiki = wiki
+  end
 
-	def update
-		user.admin?
-	end
+  def destroy?
+  	user.admin?
+  end
+	
+ 
+
+  
 end

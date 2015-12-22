@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-         after_initialize {self.role ||= :user}
+         after_initialize {self.role ||= :guest}
 
-         enum role: [:user, :member, :admin]
+         enum role: [:guest, :member, :admin]
 end
