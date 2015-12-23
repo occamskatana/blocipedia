@@ -24,7 +24,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # DELETE /resource
   # def destroy
-  #   super
+  #   cancel_membership
   # end
 
   # GET /resource/cancel
@@ -57,4 +57,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def cancel_membership
+    @user = current_user
+
+    @user.guest!
+  end
 end

@@ -5,7 +5,14 @@
 			<p>A SaaS colorabation tool</p>
 			<% if current_user %>
 				<p> Welcome back, <%= current_user.name %> </p>
-				<%= link_to "Get Started!", wikis_path, class: 'btn btn-success' %>
+					<% if current_user && current_user.role === "member" %>
+						<%= link_to "Get Started!", wikis_path, class: 'btn btn-success' %>
+					<% else current_user.role === "guest"%> 
+						<%= link_to "Get Started!", wikis_path, class: 'btn btn-success' %>
+						<%= link_to new_charge_path, class: 'btn btn-primary' do %>
+						<i class="glyphicon glyphicon-star"></i>&nbsp; Membership!
+						<% end %>
+					<% end %>
 			<% else %>
 				<p>To get started, <%= link_to "Sign In", new_user_session_path, class: 'btn btn-success' %> or
 					<%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary' %>!</p>
