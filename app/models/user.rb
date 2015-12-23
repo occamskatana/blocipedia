@@ -7,4 +7,6 @@ class User < ActiveRecord::Base
          after_initialize {self.role ||= :guest}
 
          enum role: [:guest, :member, :admin]
+
+         has_many :wikis
 end

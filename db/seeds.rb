@@ -24,8 +24,10 @@ users = User.all
 	wiki = Wiki.create!(
 		title: Faker::Hacker.say_something_smart, 
 		body: Faker::Hipster.paragraph(5),
+		user: users.sample
 		)
 end
+
 
 	
 wikis = Wiki.all

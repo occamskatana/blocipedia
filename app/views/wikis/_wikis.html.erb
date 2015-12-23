@@ -1,18 +1,23 @@
-
+<br>
 	<% @wikis.each do |w| %>
 	<div class="well">
+		
+		<% if policy(w).destroy? %>
+			<div class="pull-left">
+					<%= link_to "Delete", w, method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you complete sure you want to delete this wiki?'} %>
+			</div>
+		<% end %>
+		<% if policy(w).edit? %>
+			<div class="center">
+					<%= link_to "Edit", edit_wiki_path(w), class: 'btn btn-info' %>
+			</div>
+		<% end %>
+		<h3><%= w.title %></h3>
+		<h5> <strong>Created by: <%= w.user.name %></strong></h5>
+		<p><%=truncate(w.body, :length => 600)%>...</p>
 		<div class="pull-right"> 
 				<%= link_to "More", wiki_path(w), class: 'btn btn-primary' %>
-		</div>
-		<div class="pull-left">
-				<%= link_to "Delete", w, method: :delete, class: 'btn btn-danger', data: {confirm: 'Are you complete sure you want to delete this wiki?'} %>
-		</div>
-
-		<div class="center">
-				<%= link_to "Edit", edit_wiki_path(w), class: 'btn btn-info' %>
-		</div>
-		<h3><%= w.title %></h3>
-		<p><%=truncate(w.body, :length => 250)%>...</p>
+		</div><br />
 		
 		
 	</div>
