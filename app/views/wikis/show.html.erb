@@ -1,9 +1,11 @@
+  
+
 <h1 align="center"><%= @wiki.title %></h1><br />
 
 <div class="container" align="center">
 	<div class="row">
 		<div class="col-md-12 well">
-			<%= @wiki.body %>
+			<%= markdown(@wiki.body) %>
 		</div>
 
 		<div class="pull-left">
