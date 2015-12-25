@@ -6,16 +6,21 @@
 			<%= w.text_field :title, class: 'form-control', placeholder: "Enter Title Here" %> <br />
 
 			<%= w.label :body %>
-			<%= w.text_area :body, rows: 15, class: 'form-control' %><br />
-
-			<%= w.label :collaborators %>
-			<%= w.text_area :collaborators class: 'form-control'%>
+			<%= w.text_area :body, rows: 10, class: 'form-control' %><br />
 
 			<%= w.label :private, class: 'checkbox' do %>
 			<%= w.check_box :private %> Private Topic
 			<% end %>
 
-	
 			<%= w.submit "Submit", class: 'btn btn-success', method: :patch%>
-</div>
 	<% end %>
+
+	<h3> Collaborators </h3>
+	<ul>
+	<% @wiki.collaborators.each do |c| %>
+			<li><%= c.user.name %></li>
+	<% end %>
+	</ul>
+	<%= link_to "Add Collaborators", new_collaborator_path(id: @wiki.id), class: 'btn btn-info' %>
+	
+</div>
