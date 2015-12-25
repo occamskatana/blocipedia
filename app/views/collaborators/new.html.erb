@@ -1,0 +1,8 @@
+<%= form_tag do %>
+	<%= label_tag :user_name, "Enter User Name" %>
+	<%= text_field_tag :user_name %>
+
+	<%= hidden_field_tag :wiki_id, @wiki_id %>
+
+	<%= submit_tag "Go" %>
+<% end %>
