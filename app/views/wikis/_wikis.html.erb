@@ -13,7 +13,7 @@
 			</div>
 		<% end %>
 		<h3><%= w.title %></h3>
-		<h5> <strong>Created by: <%= w.user.name %></strong></h5>
+		<h5> <strong>Collaborators: <% w.users.each do |x| %> <%= x.name %>&nbsp;<% end %></strong></h5>
 		<p><%=truncate(w.body, :length => 600)%>...</p>
 		<div class="pull-right"> 
 				<%= link_to "More", wiki_path(w), class: 'btn btn-primary' %>

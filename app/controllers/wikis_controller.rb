@@ -5,8 +5,8 @@ class WikisController < ApplicationController
   end
 
   def index
-  	@wikis = Wiki.all
-
+  	@wikis = policy_scope(Wiki)
+    @all = Wiki.all
   end
 
   def new 
@@ -51,6 +51,7 @@ class WikisController < ApplicationController
 
   def edit
   	@wiki = Wiki.find(params[:id])
+    @collabs = @wiki.collaborators.each {|x| x.user}
   end
 
   private

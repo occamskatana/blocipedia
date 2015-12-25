@@ -19,12 +19,18 @@ end
 
 users = User.all
 
-50.times do 
 
+
+		
+
+
+50.times do 
 	wiki = Wiki.create!(
+
 		title: Faker::Hacker.say_something_smart, 
 		body: Faker::Hipster.paragraph(5),
-		user: users.sample
+		users: users.sample(3)
+
 		)
 end
 

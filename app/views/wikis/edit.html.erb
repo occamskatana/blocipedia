@@ -12,6 +12,13 @@
 			<%= w.check_box :private %> Private Topic
 			<% end %>
 
+	<%= form_for @collabs do |w| %>
+
+		<%= w.label :name %>
+		<%= w.text_field :name %>
+
+		<% end %>
+
 			<%= w.submit "Submit", class: 'btn btn-success', method: :patch%>
 </div>
 	<% end %>
