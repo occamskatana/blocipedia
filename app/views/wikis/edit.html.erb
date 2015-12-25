@@ -8,20 +8,21 @@
 			<%= w.label :body %>
 			<%= w.text_area :body, rows: 15, class: 'form-control' %><br />
 
-			<%= w.label :collaborators %>
-			<%= w.text_area :collaborators, class: 'form-control'%>
-
 			<%= w.label :private, class: 'checkbox' do %>
 			<%= w.check_box :private %> Private Topic
 			<% end %>
 
 	
 			<%= w.submit "Submit", class: 'btn btn-success', method: :patch%>
-</div>
-	<% end %>
 
+	<% end %>
+	<div class="container-fluid" align="center">
+	<h2 align="center">Collaborators</h2>
+	<%= link_to "Add New Collaborator", new_collaborator_path(wiki_id: @wiki.id), class: 'btn btn-info' %>
 	<% @wiki.users.each do |user| %>
-		<p><%= user.name %></p>
+		<h4><p><%= user.name %></p></h4>
 	<% end %>
 
-	<%= link_to "Add New Collaborator", new_collaborator_path(wiki_id: @wiki.id) %>
+	
+	</div>
+</div>
