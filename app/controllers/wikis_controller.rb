@@ -1,12 +1,15 @@
 class WikisController < ApplicationController
   def show
+    authorize @wiki
   	@wiki = Wiki.find(params[:id])
     
   end
 
   def index
+   
   	@wikis = policy_scope(Wiki)
     @all = Wiki.all
+    authorize @wikis
   end
 
   def new 
@@ -61,7 +64,7 @@ class WikisController < ApplicationController
   end
 
   def user_not_authorized
-    flash[:alert] = "You are not authorized to perform this action."
+    flash[:alert] = "You are not authorized to perform this action. Please sign in"
     redirect_to(request.referrer || root_path)
   end
 end
