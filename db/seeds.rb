@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-15.times do 
+10.times do 
 
 	user = User.create!(
 		name: Faker::Internet.user_name,
@@ -24,20 +24,27 @@ users = User.all
 		
 
 
-50.times do 
+25.times do 
 	wiki = Wiki.create!(
 
 		title: Faker::Hacker.say_something_smart, 
 		body: Faker::Hipster.paragraph(5),
-		users: users.sample(3)
+		user: users.sample,
+		public: true
+		)
+end	
+wikis = Wiki.all
 
+50.times do 
+	collaborators = Collaborator.create!(
+		wiki: wikis.sample,
+		user: users.sample
 		)
 end
 
-
-	
-wikis = Wiki.all
+	collaborators = Collaborator.all
 
 puts "Seed Finished..."
 puts "#{User.count} users created"
 puts "#{Wiki.count} wikis created"
+puts "#{Collaborator.count} collaborators added"

@@ -23,45 +23,54 @@ class WikiPolicy < ApplicationPolicy
  	user.present?
  end
 
- def update
- 	user.present?
+ def show
+   user.present? 
  end
 
-class Scope 
+ def update
+ 	wiki.collaborators.include(user)
+ end
 
- 		attr_reader :user, :scope 
+  class Scope 
 
- 		def initialize(user, scope)
- 			@user = user
- 			@scope = scope 
- 		end
+   		attr_reader :user, :scope, :wiki
 
- 		def resolve 
-      if user.present?
-     			wikis = []
-     			if user.role == 'admin' 
-     				wikis = scope.all 
-     			elsif user.role == 'member'
-     				all_wikis = scope.all
-     				all_wikis.each do |wiki|
-     					if wiki.private? || wiki.user == user || wiki.users.include?(user)
-     						wikis << wiki 
-     					end
-     				end
-     			else
-     				all_wikis = scope.all 
-     				wikis = []
-     				all_wikis.each do |wiki|
-     					if wiki.private? || wiki.users.include?(user)
-     						wikis << wiki 
-     					end
-     				end
-     			end
+   		def initialize(user, scope)
+   			@user = user
+   			@scope = scope 
+   		end
+
+   		def resolve 
+
+        wikis = []
+
+        if user.present?
+
+          if user.admin?
+           wikis = scope.all
+
+          elsif user.member?
+
+            all_wikis = scope.all
+            all_wikis.each do |wiki|
+              if wiki.public? || wiki.user == user || wiki.collaborators.include?(user)
+                wikis << wiki 
+              end
+            end
+
+          else user.guest?
+            all_wikis = scope.all
+            all_wikis.each do |wiki|
+              if wiki.public? || wiki.collaborators.include?(user)
+                wikis << wiki 
+              end
+            end
+          end
+        wikis
         else
           raise Pundit::NotAuthorizedError, "must be logged in"
-        end
-     			wikis 
-   	  end
- 	end
+        end 
+      end
+  end
  	
 end

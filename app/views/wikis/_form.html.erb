@@ -8,8 +8,8 @@
 			<%= w.label :body %>
 			<%= w.text_area :body, rows: 15, class: 'form-control' %><br />
 
-			<%= w.label :private, class: 'checkbox' do %>
-			<%= w.check_box :private %> Private Topic
+			<%= w.label :public, class: 'checkbox' do %>
+			<%= w.check_box :public %> Public Topic
 			<% end %>
 
 			<%= w.submit "Submit", class: 'btn btn-success' %>
