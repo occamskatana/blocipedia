@@ -1,5 +1,7 @@
 class WikisController < ApplicationController
   
+  
+
   def show
     
   	@wiki = Wiki.find(params[:id])
@@ -25,7 +27,7 @@ class WikisController < ApplicationController
   	else
   		flash[:error] = "There was a problem saving your wiki."
   	end
-
+    
   	redirect_to wikis_path
   end
 
@@ -44,8 +46,11 @@ class WikisController < ApplicationController
   def update
   	@wiki = Wiki.find(params[:id])
   	@wiki.assign_attributes(wiki_params)
+    @user = User.find(params[:id])
+
   	if @wiki.save
   		flash[:notice] = "Your Wiki was successfully saved"
+        
   		redirect_to @wiki
   	else
   		flash[:error] = "Your wiki could not be saved for some reason"
@@ -60,11 +65,14 @@ class WikisController < ApplicationController
   private
 
   def wiki_params
-  	params.require(:wiki).permit(:title, :body, :private)
+  	params.require(:wiki).permit(:title, :body, :private, :user)
   end
 
   def user_not_authorized
     flash[:alert] = "You are not authorized to perform this action. Please sign in"
     redirect_to(request.referrer || root_path)
   end
+
+  
+
 end

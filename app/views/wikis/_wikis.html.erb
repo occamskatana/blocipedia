@@ -14,8 +14,8 @@
 		<% end %>
 		<h3><%= w.title %></h3>
 		<h5> <strong>Collaborators: <% w.users.each do |x| %> <%= x.name %>&nbsp;<% end %></strong></h5>
-		<p><%=truncate(w.body, :length => 600)%>...</p> <%= w.public? %>>
-		<div class="pull-right"> 
+		<p><%=truncate(w.body, :length => 600)%>...</p> 
+		<div class="center"> 
 				<%= link_to "More", wiki_path(w), class: 'btn btn-primary' %>
 		</div><br />
 		

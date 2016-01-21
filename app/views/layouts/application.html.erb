@@ -8,13 +8,14 @@
 </head>
 <body>
 
-<div class="container-narrow">
-	<div class="masthead">
-		<%= render 'layouts/user_header' %>
-		<h3 class="muted"><%= link_to "Blocipedia", root_path %></h3>
-		<h5 class="muted">A SAAS colaboration tool </h5>
+<div class="container-fluid">
+  <div class="container-narrow">
+  	<div class="masthead">
+  		<%= render 'layouts/user_header' %>
+  		<h3 class="muted"><%= link_to "Blocipedia", root_path %></h3>
+  		<h5 class="muted">A SAAS colaboration tool </h5>
+  </div>
 </div>
-
 
     <div class="flash">
    		<% if flash[:notice] %>

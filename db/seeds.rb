@@ -29,10 +29,11 @@ users = User.all
 
 		title: Faker::Hacker.say_something_smart, 
 		body: Faker::Hipster.paragraph(5),
-		user: users.sample,
+		users: users.sample(4),
 		public: true
 		)
 end	
+
 wikis = Wiki.all
 
 50.times do 

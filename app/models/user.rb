@@ -9,4 +9,5 @@ class User < ActiveRecord::Base
          enum role: [:guest, :member, :admin]
          has_many :collaborators
          has_many :wikis, through: :collaborators
+         has_many :wikis
 end

@@ -3,33 +3,37 @@ class WikiPolicy < ApplicationPolicy
   attr_reader :user, :wiki
 
   def initialize(user, wiki)
-  	@user = user
-  	@wiki = wiki
+    @user = user
+    @wiki = wiki
   end
 
   def index
-  	user.present?
+    user.present?
   end
 
   def destroy?
-  	user.admin?
+    user.admin?
   end
-	
- def new
- 	user.present?
- end
 
- def edit
- 	user.present?
- end
+  def new
+    user.present?
+  end
 
- def show
-   user.present? 
- end
+  def create
+    user.present?
+  end
 
- def update
- 	wiki.collaborators.include(user)
- end
+  def edit
+    user.present?
+  end
+
+  def show
+    user.present? 
+  end
+
+  def update
+    wiki.collaborators.include(user)
+  end
 
   class Scope 
 
@@ -53,7 +57,7 @@ class WikiPolicy < ApplicationPolicy
 
             all_wikis = scope.all
             all_wikis.each do |wiki|
-              if wiki.public? || wiki.user == user || wiki.collaborators.include?(user)
+              if wiki.public? || wiki.collaborators.include?(user)
                 wikis << wiki 
               end
             end

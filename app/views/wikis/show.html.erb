@@ -4,7 +4,7 @@
 
 <div class="container" align="center">
 	<div class="row">
-		<h3>Collaborators:</h3><h4><%@wiki.users.each do |x| %><%= x.name %>&nbsp;&nbsp;<% end %></h4>
+		<h3>Collaborators:</h3><h4><%@wiki.users.each do |x| %><strong><%= x.name %>&nbsp;&nbsp;</strong><% end %></h4>
 		<div class="col-md-12 well">
 			<%= markdown(@wiki.body) %>
 		</div>

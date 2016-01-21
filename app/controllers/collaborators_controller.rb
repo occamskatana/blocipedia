@@ -10,7 +10,7 @@ class CollaboratorsController < ApplicationController
 		if user
 			@collaborator = Collaborator.new(wiki_id: params[:wiki_id], user_id: user.id)
 			if @collaborator.save
-				flash[:notice] = "Yes it worked."
+				flash[:notice] = "Collaborator Added"
 				redirect_to wiki_path(@collaborator.wiki_id)
 			else
 				flash[:error] = "Did not work."

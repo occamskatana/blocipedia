@@ -1,5 +1,5 @@
 <div class="container-fluid">
-	<h1 align="center">Current Wikis </h1> <% if policy(@all).new? %> <%= link_to "Create New", new_wiki_path, class: 'btn btn-success' %><% end %>
+	<h1 align="center">Current Wikis </h1> <%= link_to "Create New", new_wiki_path, class: 'btn btn-success' %>
 		<div class="container" align="center">
 			<%= render 'wikis/wikis' %>
 		</div>
