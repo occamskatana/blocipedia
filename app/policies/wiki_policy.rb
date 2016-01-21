@@ -57,7 +57,7 @@ class WikiPolicy < ApplicationPolicy
 
             all_wikis = scope.all
             all_wikis.each do |wiki|
-              if wiki.public? || wiki.collaborators.include?(user)
+              if wiki.public? || wiki.collaborators.include?(user) || wiki.user_id == user.id
                 wikis << wiki 
               end
             end
@@ -65,7 +65,7 @@ class WikiPolicy < ApplicationPolicy
           else user.guest?
             all_wikis = scope.all
             all_wikis.each do |wiki|
-              if wiki.public? || wiki.collaborators.include?(user)
+              if wiki.public? || wiki.collaborators.include?(user) || wiki.user_id == user.id
                 wikis << wiki 
               end
             end

@@ -1,21 +1,21 @@
-<div class="border-form-div-1" %>
-	<%= form_for @wiki do |w| %>
 
-		
-			<%= w.label :title %>
-			<%= w.text_field :title, class: 'form-control', placeholder: "Enter Title Here" %> <br />
+	<div class="border-form-div-1" %>
+		<%= simple_form_for @wiki do |w| %>
 
-			<%= w.label :body %>
-			<%= w.text_area :body, rows: 15, class: 'form-control' %><br />
+			
+				
+				<%= w.text_field :title, class: 'form-control', placeholder: "Enter Title Here" %> <br />
 
-			<%= w.label :public, class: 'checkbox' do %>
-			<%= w.check_box :public %> Public Topic
-			<% end %>
+				
+				<%= w.text_area :body, rows: 15, class: 'form-control' %><br />
 
-	
-			<%= w.submit "Submit", class: 'btn btn-success', method: :patch%>
+				<%= w.input :public, as: :radio_buttons %>
 
-	<% end %>
+				<%= w.submit "Submit", class: 'btn btn-success' %>
+
+
+		<% end %>
+	</div>
 	<div class="container-fluid" align="center">
 	<h2 align="center">Collaborators</h2>
 	<%= link_to "Add New Collaborator", new_collaborator_path(wiki_id: @wiki.id), class: 'btn btn-info' %>

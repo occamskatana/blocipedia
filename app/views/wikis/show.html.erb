@@ -4,7 +4,8 @@
 
 <div class="container" align="center">
 	<div class="row">
-		<h3>Collaborators:</h3><h4><%@wiki.users.each do |x| %><strong><%= x.name %>&nbsp;&nbsp;</strong><% end %></h4>
+		<h3>Collaborators:</h3><h4><%@wiki.users.each do |x| %><strong><%= x.name %>
+		&nbsp;&nbsp;</strong><% end %></h4>
 		<div class="col-md-12 well">
 			<%= markdown(@wiki.body) %>
 		</div>
@@ -15,6 +16,7 @@
 				<%= link_to "Add New Collaborator", new_collaborator_path(wiki_id: @wiki.id), class: 'btn btn-info' %>
 		
 				<%= link_to "Edit", edit_wiki_path(@wiki), class: 'btn btn-warning' %>
+				<%= link_to "To Wikis Index", wikis_path, class: 'btn btn-primary' %>
 		</div>
 	</div>
 </div>

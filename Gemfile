@@ -18,6 +18,7 @@ gem 'stripe'
 gem 'figaro', '1.0'
 gem 'redcarpet'
 gem 'pry'
+gem 'simple_form'
 group :development, :test do
   gem 'byebug'
 end
