@@ -29,7 +29,7 @@ users = User.all
 
 		title: Faker::Hacker.say_something_smart, 
 		body: Faker::Hipster.paragraph(5),
-		users: users.sample(4),
+		user_id: users.sample.id,
 		public: true
 		)
 end	
